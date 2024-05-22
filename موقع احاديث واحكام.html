@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بحث الأحاديث الدينية</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .search-container label {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .result p {
+            background-color: #eef;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccd;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>بحث الأحاديث الدينية</h1>
+        <div class="search-container">
+            <label for="search">ابحث عن حديث:</label>
+            <input type="text" id="search" oninput="searchHadith()" placeholder="أدخل نص الحديث هنا..." />
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const hadiths = [
+            { text: "إنما الأعمال بالنيات" },
+            { text: "الدين النصيحة" },
+            { text: "لا ضرر ولا ضرار" },
+            { text: "المسلم من سلم المسلمون من لسانه ويده" },
+            { text: "حب لأخيك ما تحب لنفسك" },
+            { text: "المؤمن للمؤمن كالبنيان يشد بعضه بعضاً" },
+            { text: "إنْ أردتَ أنْ يَلينَ قلبُكَ، فأطعِمْ المسكينَ، وامسحْ رأسَ اليتيمِ" },
+            { text: "كثر ما يدخل الناس الجنة، تقوى اللّه وحسن الخلق" }
+        ];
+
+        function searchHadith() {
+            const input = document.getElementById('search').value;
+            const result = document.getElementById('result');
+            result.innerHTML = '';
+            if (input) {
+                const filteredHadiths = hadiths.filter(h => h.text.includes(input));
+                if (filteredHadiths.length > 0) {
+                    filteredHadiths.forEach(h => {
+                        const p = document.createElement('p');
+                        p.textContent = h.text;
+                        result.appendChild(p);
+                    });
+                } else {
+                    result.textContent = 'لم يتم العثور على أحاديث مطابقة.';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
